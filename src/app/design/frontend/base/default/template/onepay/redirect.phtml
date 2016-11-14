@@ -1,0 +1,73 @@
+<?php 
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category    Magestore
+ * @package     Magestore_OnePay
+ * @copyright   Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license     http://www.magestore.com/license-agreement.html
+ */
+
+/**
+ * Onepay template
+ * 
+ * @see Magestore_OnePay_Block_Onepay
+ */
+?>
+<?php $quote 		= Mage::getSingleton('checkout/session')->getQuote(); ?>
+<?php $address		= $quote->getAddress(); ?>
+<?php $incrementId 	= Mage::getSingleton('checkout/session')->getLastRealOrderId(); ?>
+<?php $order 		= Mage::getModel('sales/order')->loadByIncrementId($incrementId);?>
+<form action="<?php echo Mage::getModel('onepay/onepay')->getOnepayUrlPayment();?>" method="post" id="onepay_form" name="onepay_form" onload="return()">
+	<input type="hidden" name="vpc_Merchant" value="<?php echo Mage::getModel('onepay/onepay')->getMerchantId(); ?>"/>
+	
+	<input type="hidden" name="vpc_AccessCode" value="<?php echo Mage::getModel('onepay/onepay')->getAccessCode(); ?>"/>
+	
+	<input type="hidden" name="vpc_MerchTxnRef" value="<?php echo $order->getId(); ?>"/>
+	
+	<input type="hidden" name="vpc_OrderInfo" value="<?php echo $order->getId() ?>"/>
+	
+	<input type="hidden" name="vpc_Amount" value="<?php echo $order->getGrandTotal();?>"/>
+	
+	<input type="hidden" name="vpc_ReturnURL" value="<?php echo $this->getUrl('onepay/index/return'); ?>"/>
+	
+	<input type="hidden" name="vpc_Version" value="<?php echo '1';?>"/>
+	
+	<input type="hidden" name="vpc_Command" value="<?php echo $this->__('pay');  ?>"/>
+	
+	<input type="hidden" name="vpc_Locale" value="<?php echo Mage::getModel('onepay/onepay')->getPaymentServer(); ?>"/>
+	
+	
+	<!-- Begin Customer Address -->
+	<input type="hidden" name="vpc_TicketNo" value="<?php echo Mage::getModel('onepay/onepay')->getCustomerIpAddress(); ?>"/>
+	
+	<input type="hidden" name="vpc_SHIP_Street01" value="<?php echo $quote->getShippingAddress()->getStreet(); ?>"/>
+	
+	<input type="hidden" name="vpc_SHIP_Provice" value="<?php echo $quote->getShippingAddress()->getRegion(); ?>"/>
+	
+	<input type="hidden" name="vpc_SHIP_City" value="<?php echo $quote->getShippingAddress()->getCity(); ?>"/>
+	
+	<input type="hidden" name="vpc_SHIP_Country" value="<?php echo $quote->getShippingAddress()->getCountry(); ?>"/>
+	
+	<input type="hidden" name="vpc_Customer_Phone" value="<?php echo $quote->getShippingAddress()->getTelephone(); ?>"/>
+	
+	<input type="hidden" name="vpc_Customer_Email" value="<?php echo $quote->getShippingAddress()->getEmail(); ?>"/>
+	
+	<input type="hidden" name="vpc_Customer_Id" value="<?php echo $quote->getShippingAddress()->getCustomerId(); ?>"/>
+</form>
+<script type="text/javascript">
+	function return() {
+		$('onepay_form').submit();
+	}
+</script>

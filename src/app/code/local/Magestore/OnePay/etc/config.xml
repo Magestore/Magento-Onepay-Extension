@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category    Magestore
+ * @package     Magestore_OnePay
+ * @copyright   Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license     http://www.magestore.com/license-agreement.html
+ */
+-->
+<config>
+    <modules>
+        <Magestore_OnePay>
+            <version>0.1.0</version>
+        </Magestore_OnePay>
+    </modules>
+    <frontend>
+        <routers>
+            <onepay>
+                <use>standard</use>
+                <args>
+                    <module>Magestore_OnePay</module>
+                    <frontName>onepay</frontName>
+                </args>
+            </onepay>
+        </routers>
+        <layout>
+            <updates>
+                <onepay>
+                    <file>onepay.xml</file>
+                </onepay>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Magestore_OnePay>
+                    <files>
+                        <default>Magestore_OnePay.csv</default>
+                    </files>
+                </Magestore_OnePay>
+            </modules>
+        </translate>
+    </frontend>
+    <admin>
+        <routers>
+            <onepayadmin>
+                <use>admin</use>
+                <args>
+                    <module>Magestore_OnePay</module>
+                    <frontName>onepayadmin</frontName>
+                </args>
+            </onepayadmin>
+        </routers>
+    </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <onepay>
+                    <file>onepay.xml</file>
+                </onepay>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Magestore_OnePay>
+                    <files>
+                        <default>Magestore_OnePay.csv</default>
+                    </files>
+                </Magestore_OnePay>
+            </modules>
+        </translate>
+    </adminhtml>   
+    <global>
+        <models>
+            <onepay>
+                <class>Magestore_OnePay_Model</class>
+                <resourceModel>onepay_mysql4</resourceModel>
+            </onepay>
+            <onepay_mysql4>
+                <class>Magestore_OnePay_Model_Mysql4</class>
+                <entities>
+                    <onepay>
+                        <table>onepay</table>
+                    </onepay>
+                </entities>
+            </onepay_mysql4>
+        </models>
+        <resources>
+            <onepay_setup>
+                <setup>
+                    <module>Magestore_OnePay</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </onepay_setup>
+            <onepay_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </onepay_write>
+            <onepay_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </onepay_read>
+        </resources>
+        <blocks>
+            <onepay>
+                <class>Magestore_OnePay_Block</class>
+            </onepay>
+        </blocks>
+        <helpers>
+            <onepay>
+                <class>Magestore_OnePay_Helper</class>
+            </onepay>
+        </helpers>
+    </global>
+    <default>
+		<payment>
+			<onepay>
+				<model>onepay/onepay</model>
+				<title>Onepay ATM</title>
+				<description><![CDATA[You will be redirected to secure payment page when you place an order. It's available for ATM.]]></description>
+				<vpc_Version>2</vpc_Version>
+				<vpc_Locale>vn</vpc_Locale>
+				<min_order_total>2000</min_order_total>
+				<vpc_Currency>VND</vpc_Currency>
+				<order_status>processing</order_status>
+			</onepay>
+		 
+			<onepayquocte>
+				<model>onepay/onepayquocte</model>
+				<title>Onepay Credit Card</title>
+				<description><![CDATA[You will be redirected to secure payment page when you place an order. It's available for MasterCard, Visa, American Express, JCB.]]></description>
+				<vpc_Version>2</vpc_Version>
+				<vpc_Locale>vn</vpc_Locale>
+				<min_order_total>2000</min_order_total>
+				<vpc_Currency>VND</vpc_Currency>
+				<order_status>processing</order_status>
+			</onepayquocte>
+		</payment>
+	</default>
+</config>

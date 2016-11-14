@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category    Magestore
+ * @package     Magestore_OnePay
+ * @copyright   Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license     http://www.magestore.com/license-agreement.html
+ */
+-->
+<layout version="0.1.0">
+	<default>
+        <reference name="right">
+            <block type="onepay/onepay" name="onepay" after="-" template="onepay/right_sidebar.phtml" />
+        </reference>	
+    </default>
+    <onepay_index_index>
+        <reference name="content">
+            <block type="onepay/onepay" name="onepay" template="onepay/onepay.phtml" />
+        </reference>
+    </onepay_index_index>
+</layout>

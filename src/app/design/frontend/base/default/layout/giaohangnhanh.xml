@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category    Magestore
+ * @package     Magestore_GiaoHangNhanh
+ * @copyright   Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license     http://www.magestore.com/license-agreement.html
+ */
+-->
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addJs">
+                <script>magestore/giaohangnhanh.js</script>
+            </action>
+            <action method="addCss">
+                <styleSheet>css/magestore/giaohangnhanh.css</styleSheet>
+            </action>
+        </reference>	
+    </default>     
+	
+	<giaohangnhanh_checkout>
+        <reference name="content">
+            <block type="giaohangnhanh/giaohangnhanh" name="giaohangnhanh" after="-" template="giaohangnhanh/giaohangnhanh.phtml" />
+        </reference>
+    </giaohangnhanh_checkout>
+	
+	<checkout_cart_index>
+        <update handle="giaohangnhanh_checkout" />
+    </checkout_cart_index>
+	<checkout_onepage_index>
+        <update handle="giaohangnhanh_checkout" />
+    </checkout_onepage_index>
+	<onestepcheckout_index_index>
+        <update handle="giaohangnhanh_checkout" />
+    </onestepcheckout_index_index>	
+</layout>

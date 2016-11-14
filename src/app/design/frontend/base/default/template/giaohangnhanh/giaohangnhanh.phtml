@@ -1,0 +1,49 @@
+<?php 
+/**
+ * Magestore
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the Magestore.com license that is
+ * available through the world-wide-web at this URL:
+ * http://www.magestore.com/license-agreement.html
+ * 
+ * DISCLAIMER
+ * 
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ * 
+ * @category    Magestore
+ * @package     Magestore_GiaoHangNhanh
+ * @copyright   Copyright (c) 2012 Magestore (http://www.magestore.com/)
+ * @license     http://www.magestore.com/license-agreement.html
+ */
+
+/**
+ * Giaohangnhanh template
+ * 
+ * @see Magestore_GiaoHangNhanh_Block_Giaohangnhanh
+ */
+?>
+<div class="shipping-popup-overlay" id="shipping-popup-overlay">
+	<div id="shipping-content" class="shipping-content" style="">
+	</div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+		<?php
+			$session = Mage::getSingleton('checkout/session');
+			$city = $session ->getData('city','');
+		?>
+		clientHubs = '<?php echo Mage::helper('giaohangnhanh')->GetClientHubsOption(); ?>';
+		changePickHubUrl = '<?php echo $this->getUrl('giaohangnhanh/index/changePickHub'); ?>';
+		changeServiceUrl = '<?php echo $this->getUrl('giaohangnhanh/index/changeService'); ?>';
+		
+		content = '<div class="giaohangnhanh-detail" id="giaohangnhanh_detail"><div class="pickhub-container" id="pickhub_container">'+clientHubs+'</div><div  class="service-container" id="service_container"></div><p class="clear"></p></div>';
+		giaohangnhanh = new GiaoHangNhanh('s_method_giaohangnhanh_giaohangnhanh','<?php echo $city; ?>','city','pickhub_container','service_container','giaohangnhanh_detail',content,changePickHubUrl,changeServiceUrl);
+		
+		giaohangnhanhbilling = new GiaoHangNhanh('s_method_giaohangnhanh_giaohangnhanh','<?php echo $city; ?>','billing:city','pickhub_container','service_container','giaohangnhanh_detail',content,changePickHubUrl,changeServiceUrl);
+		
+		giaohangnhanhshipping = new GiaoHangNhanh('s_method_giaohangnhanh_giaohangnhanh','<?php echo $city; ?>','shipping:city','pickhub_container','service_container','giaohangnhanh_detail',content,changePickHubUrl,changeServiceUrl);
+//]]>
+</script>
