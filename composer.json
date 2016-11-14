@@ -1,0 +1,7 @@
+{
+    "name": "magestore/onepay",
+    "license": ["GPL-3.0"],
+    "type": "magento-module",
+    "description": "Onepay extension for Magento",
+    "homepage": "https://github.com/Magestore/Magento-Onepay-Extension.git"
+}
